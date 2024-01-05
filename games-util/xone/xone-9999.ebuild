@@ -13,10 +13,7 @@ LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 ~x86"
 
-DEPEND=""
 RDEPEND="${DEPEND}"
-BDEPEND=""
-NIH_SOURCE="${KV_OUT_DIR}"
 
 pkg_setup() {
 	linux-mod-r1_pkg_setup
@@ -32,8 +29,7 @@ src_compile() {
 			xone-gip-chatpad=/kernel/drivers/input/joystick
 			xone-gip-guitar=/kernel/drivers/input/joystick
 	)
-	echo "NIH_SOURCE ${NIH_SOURCE}"
-	local modargs=( -C "${KV_DIR}" M="${S}"  )
+	local modargs=( -C "${KV_DIR}" M="${S}" )
 	linux-mod-r1_src_compile
 }
 
@@ -42,5 +38,5 @@ src_install() {
 	insinto /etc/modprobe.d
 	doins  install/modprobe.conf
 	insinto /lib/firmware/
-	doins ${FILESDIR}/FW_ACC_00U.bin
+	doins ${FILESDIR}/xow_dongle.bin
 }
